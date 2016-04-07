@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BanksCreateDlg" widgetVar="BanksCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBanksTitle}">
+            <h:form id="BanksCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{banksController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBanksLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{banksController.selected.id}" title="#{bundle.CreateBanksTitle_id}" required="true" requiredMessage="#{bundle.CreateBanksRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateBanksLabel_active}" for="active" />
+                        <p:selectBooleanCheckbox id="active" value="#{banksController.selected.active}" required="true" requiredMessage="#{bundle.EditBanksRequiredMessage_active}"/>
+                        <p:outputLabel value="#{bundle.CreateBanksLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{banksController.selected.code}" title="#{bundle.CreateBanksTitle_code}" />
+                        <p:outputLabel value="#{bundle.CreateBanksLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{banksController.selected.name}" title="#{bundle.CreateBanksTitle_name}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{banksController.create}" value="#{bundle.Save}" update="display,:BanksListForm:datalist,:growl" oncomplete="handleSubmit(args,'BanksCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BanksCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

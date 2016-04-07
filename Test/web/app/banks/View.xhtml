@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BanksViewDlg" widgetVar="BanksViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewBanksTitle}">
+            <h:form id="BanksViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{banksController.selected != null}">
+                        <h:outputText value="#{bundle.ViewBanksLabel_id}"/>
+                        <h:outputText value="#{banksController.selected.id}" title="#{bundle.ViewBanksTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewBanksLabel_active}"/>
+                        <p:selectBooleanCheckbox value="#{banksController.selected.active}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewBanksLabel_code}"/>
+                        <h:outputText value="#{banksController.selected.code}" title="#{bundle.ViewBanksTitle_code}"/>
+                        <h:outputText value="#{bundle.ViewBanksLabel_name}"/>
+                        <h:outputText value="#{banksController.selected.name}" title="#{bundle.ViewBanksTitle_name}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BanksViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

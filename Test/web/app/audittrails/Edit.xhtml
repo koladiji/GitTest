@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AudittrailsEditDlg" widgetVar="AudittrailsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAudittrailsTitle}">
+            <h:form id="AudittrailsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{audittrailsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAudittrailsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{audittrailsController.selected.id}" title="#{bundle.EditAudittrailsTitle_id}" required="true" requiredMessage="#{bundle.EditAudittrailsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditAudittrailsLabel_auditType}" for="auditType" />
+                        <p:inputText id="auditType" value="#{audittrailsController.selected.auditType}" title="#{bundle.EditAudittrailsTitle_auditType}" />
+                        <p:outputLabel value="#{bundle.EditAudittrailsLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{audittrailsController.selected.createDate}" title="#{bundle.EditAudittrailsTitle_createDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAudittrailsLabel_details}" for="details" />
+                        <p:inputText id="details" value="#{audittrailsController.selected.details}" title="#{bundle.EditAudittrailsTitle_details}" />
+                        <p:outputLabel value="#{bundle.EditAudittrailsLabel_userIp}" for="userIp" />
+                        <p:inputText id="userIp" value="#{audittrailsController.selected.userIp}" title="#{bundle.EditAudittrailsTitle_userIp}" />
+                        <p:outputLabel value="#{bundle.EditAudittrailsLabel_portalUserid}" for="portalUserid" />
+                        <p:selectOneMenu id="portalUserid" value="#{audittrailsController.selected.portalUserid}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{portalusersController.itemsAvailableSelectOne}"
+                                           var="portalUseridItem"
+                                           itemValue="#{portalUseridItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{audittrailsController.update}" value="#{bundle.Save}" update="display,:AudittrailsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AudittrailsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AudittrailsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PortalusersCreateDlg" widgetVar="PortalusersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePortalusersTitle}">
+            <h:form id="PortalusersCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{portalusersController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{portalusersController.selected.id}" title="#{bundle.CreatePortalusersTitle_id}" required="true" requiredMessage="#{bundle.CreatePortalusersRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_approveDate}" for="approveDate" />
+                        <p:calendar id="approveDate" pattern="MM/dd/yyyy" value="#{portalusersController.selected.approveDate}" title="#{bundle.EditPortalusersTitle_approveDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_approved}" for="approved" />
+                        <p:selectBooleanCheckbox id="approved" value="#{portalusersController.selected.approved}" required="true" requiredMessage="#{bundle.EditPortalusersRequiredMessage_approved}"/>
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_createDate}" for="createDate" />
+                        <p:calendar id="createDate" pattern="MM/dd/yyyy" value="#{portalusersController.selected.createDate}" title="#{bundle.EditPortalusersTitle_createDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_emailAddress}" for="emailAddress" />
+                        <p:inputText id="emailAddress" value="#{portalusersController.selected.emailAddress}" title="#{bundle.CreatePortalusersTitle_emailAddress}" />
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_firstLogin}" for="firstLogin" />
+                        <p:selectBooleanCheckbox id="firstLogin" value="#{portalusersController.selected.firstLogin}" required="true" requiredMessage="#{bundle.EditPortalusersRequiredMessage_firstLogin}"/>
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{portalusersController.selected.firstName}" title="#{bundle.CreatePortalusersTitle_firstName}" />
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_lastName}" for="lastName" />
+                        <p:inputText id="lastName" value="#{portalusersController.selected.lastName}" title="#{bundle.CreatePortalusersTitle_lastName}" />
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_salt}" for="salt" />
+                        <p:inputText id="salt" value="#{portalusersController.selected.salt}" title="#{bundle.CreatePortalusersTitle_salt}" />
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_secret}" for="secret" />
+                        <p:inputText id="secret" value="#{portalusersController.selected.secret}" title="#{bundle.CreatePortalusersTitle_secret}" />
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_status}" for="status" />
+                        <p:selectBooleanCheckbox id="status" value="#{portalusersController.selected.status}" required="true" requiredMessage="#{bundle.EditPortalusersRequiredMessage_status}"/>
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{portalusersController.selected.username}" title="#{bundle.CreatePortalusersTitle_username}" />
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_checker}" for="checker" />
+                        <p:selectBooleanCheckbox id="checker" value="#{portalusersController.selected.checker}" required="true" requiredMessage="#{bundle.EditPortalusersRequiredMessage_checker}"/>
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_createByid}" for="createByid" />
+                        <p:selectOneMenu id="createByid" value="#{portalusersController.selected.createByid}" >
+                            <f:selectItems value="#{portalusersController.itemsAvailableSelectOne}"
+                                           var="createByidItem"
+                                           itemValue="#{createByidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePortalusersLabel_approveByid}" for="approveByid" />
+                        <p:selectOneMenu id="approveByid" value="#{portalusersController.selected.approveByid}" >
+                            <f:selectItems value="#{portalusersController.itemsAvailableSelectOne}"
+                                           var="approveByidItem"
+                                           itemValue="#{approveByidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{portalusersController.create}" value="#{bundle.Save}" update="display,:PortalusersListForm:datalist,:growl" oncomplete="handleSubmit(args,'PortalusersCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PortalusersCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PortalusersViewDlg" widgetVar="PortalusersViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPortalusersTitle}">
+            <h:form id="PortalusersViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{portalusersController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_id}"/>
+                        <h:outputText value="#{portalusersController.selected.id}" title="#{bundle.ViewPortalusersTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_approveDate}"/>
+                        <h:outputText value="#{portalusersController.selected.approveDate}" title="#{bundle.ViewPortalusersTitle_approveDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_approved}"/>
+                        <p:selectBooleanCheckbox value="#{portalusersController.selected.approved}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_createDate}"/>
+                        <h:outputText value="#{portalusersController.selected.createDate}" title="#{bundle.ViewPortalusersTitle_createDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_emailAddress}"/>
+                        <h:outputText value="#{portalusersController.selected.emailAddress}" title="#{bundle.ViewPortalusersTitle_emailAddress}"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_firstLogin}"/>
+                        <p:selectBooleanCheckbox value="#{portalusersController.selected.firstLogin}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_firstName}"/>
+                        <h:outputText value="#{portalusersController.selected.firstName}" title="#{bundle.ViewPortalusersTitle_firstName}"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_lastName}"/>
+                        <h:outputText value="#{portalusersController.selected.lastName}" title="#{bundle.ViewPortalusersTitle_lastName}"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_salt}"/>
+                        <h:outputText value="#{portalusersController.selected.salt}" title="#{bundle.ViewPortalusersTitle_salt}"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_secret}"/>
+                        <h:outputText value="#{portalusersController.selected.secret}" title="#{bundle.ViewPortalusersTitle_secret}"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_status}"/>
+                        <p:selectBooleanCheckbox value="#{portalusersController.selected.status}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_username}"/>
+                        <h:outputText value="#{portalusersController.selected.username}" title="#{bundle.ViewPortalusersTitle_username}"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_checker}"/>
+                        <p:selectBooleanCheckbox value="#{portalusersController.selected.checker}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_createByid}"/>
+                        <h:outputText value="#{portalusersController.selected.createByid}" title="#{bundle.ViewPortalusersTitle_createByid}"/>
+                        <h:outputText value="#{bundle.ViewPortalusersLabel_approveByid}"/>
+                        <h:outputText value="#{portalusersController.selected.approveByid}" title="#{bundle.ViewPortalusersTitle_approveByid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PortalusersViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
